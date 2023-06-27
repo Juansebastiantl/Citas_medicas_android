@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">app-miercoles</string>
+    <string-array name="spinnerID">
+        <item>Odontologia</item>
+        <item>Cardiologia</item>
+        <item>Ginecologia</item>
+        <item>Nutricionista</item>
+        <item>Urologia</item>
+    </string-array>
+    <string-array name="spnMedico">
+        <item>Camilo Montaña</item>
+        <item>Juan Laguado</item>
+        <item>Gustavo Gonzales</item>
+        <item>Valeria Quiroz</item>
+        <item>Bryan Muñoz</item>
+    </string-array>
 </resources>
