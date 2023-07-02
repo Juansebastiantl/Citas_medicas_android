@@ -18,7 +18,9 @@ public class Register extends AppCompatActivity {
     private EditText txtBirthday;
     private Button btnRegister;
 
-    DataBase dataBase = new DataBase();
+    private Database_administrator obj_base;
+
+   // DataBase dataBase = new DataBase();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,10 +42,27 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(Register.this, txtName.getText(),Toast.LENGTH_LONG).show();
-                dataBase.addcitas(txtName.getText().toString(), spinnerRID.getSelectedItem().toString(), spnMedico.getSelectedItem().toString(), txtBirthday.getText().toString());
-                //dataBase.addcitas("A","N","C", "D");
-                Toast.makeText(Register.this, "Se ha registrado la cita",Toast.LENGTH_LONG).show();
+
+                boolean confirm = obj_base.connectSQL();
+                if(confirm){
+
+                    Toast.makeText(Register.this, "Exito en la conexion",Toast.LENGTH_LONG).show();
+
+                    boolean confirm2 = obj_base.insert_record(txtName.getText().toString(), spinnerRID.getSelectedItem().toString(), spnMedico.getSelectedItem().toString(), txtBirthday.getText().toString());
+                    if (confirm2){
+                        Toast.makeText(Register.this, "Exito en el registro",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(Register.this, "Fallo en el registro",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else{
+                    Toast.makeText(Register.this, "Fallo la conexion",Toast.LENGTH_LONG).show();
+                }
+
+                //dataBase.addcitas(txtName.getText().toString(), spinnerRID.getSelectedItem().toString(), spnMedico.getSelectedItem().toString(), txtBirthday.getText().toString());
+
+                //Toast.makeText(Register.this, "Se ha registrado la cita",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -52,5 +71,6 @@ public class Register extends AppCompatActivity {
         txtName = (EditText) findViewById(R.id.txtName);
         txtBirthday = (EditText) findViewById(R.id.txtBirthday);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        obj_base = new Database_administrator();
     }
 }
