@@ -48,8 +48,8 @@ public class Register extends AppCompatActivity {
 
                     Toast.makeText(Register.this, "Exito en la conexion",Toast.LENGTH_LONG).show();
 
-                    boolean confirm2 = obj_base.insert_record(txtName.getText().toString(), spinnerRID.getSelectedItem().toString(), spnMedico.getSelectedItem().toString(), txtBirthday.getText().toString());
-                    if (confirm2){
+                    boolean registro = obj_base.insert_record(txtName.getText().toString(), spinnerRID.getSelectedItem().toString(), spnMedico.getSelectedItem().toString(), txtBirthday.getText().toString());
+                    if (registro){
                         Toast.makeText(Register.this, "Exito en el registro",Toast.LENGTH_LONG).show();
                     }
                     else {
