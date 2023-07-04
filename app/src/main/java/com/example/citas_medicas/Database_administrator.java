@@ -48,7 +48,7 @@ public class Database_administrator {
     }
 
     public ArrayList<String> consultTable () {
-        String instructionSQL = "SELECT * FROM users";
+        String instructionSQL = "SELECT * FROM citas";
         ArrayList <String> datos = new ArrayList <String>();
         try {
             ResultSet results = connect.prepareStatement(instructionSQL).executeQuery();
