@@ -54,7 +54,7 @@ public class Database_administrator {
             ResultSet results = connect.prepareStatement(instructionSQL).executeQuery();
             while (results.next()) {
                 datos.add(results.getString("fullname") + " " + results.getString("specialist") + " "
-                        + results.getString("doctor") + " " + results.getString("date"));
+                        + results.getString("doctor") + " " + results.getString("meddate"));
             }
         } catch (Exception err) {
             Log.d("myTag", err.toString());
