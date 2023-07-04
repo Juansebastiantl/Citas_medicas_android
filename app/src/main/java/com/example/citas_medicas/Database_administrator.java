@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.sql.*;
 
 public class Database_administrator {
     Connection connect;
@@ -45,8 +47,19 @@ public class Database_administrator {
         }
     }
 
-    public void consult_record()
-    {
-
+    public ArrayList<String> consultTable () {
+        String instructionSQL = "SELECT * FROM users";
+        ArrayList <String> datos = new ArrayList <String>();
+        try {
+            ResultSet results = connect.prepareStatement(instructionSQL).executeQuery();
+            while (results.next()) {
+                datos.add(results.getString("fullname") + " " + results.getString("specialist") + " "
+                        + results.getString("doctor") + " " + results.getString("date"));
+            }
+        } catch (Exception err) {
+            Log.d("myTag", err.toString());
+        }
+        return datos;
     }
+
 }

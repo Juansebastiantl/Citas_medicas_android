@@ -20,6 +20,8 @@ public class Consult extends AppCompatActivity {
     private Spinner spinnerID;
     DataBase dataBase = new DataBase();
 
+    Database_administrator DatabaseCloud = new Database_administrator();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,21 +37,26 @@ public class Consult extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(Consult.this, "Consulta",Toast.LENGTH_LONG).show();
-               // Toast.makeText(Consult.this, dataBase.getcitas().getNombre(),Toast.LENGTH_LONG).show();
-               //        android.R.layout.simple_list_item_1);
-                Log.i(dataBase.getCitas().toString(), "Tengo los datos " + dataBase.getCitas().size());
+                // Toast.makeText(Consult.this, dataBase.getcitas().getNombre(),Toast.LENGTH_LONG).show();
+                //        android.R.layout.simple_list_item_1);
+                //Log.i(dataBase.getCitas().toString(), "Tengo los datos " + dataBase.getCitas().size());
 
-                String[] str = new String[dataBase.getCitas().size()];
+                //String[] str = new String[dataBase.getCitas().size()];
+                DatabaseCloud.connectSQL();
+                ArrayList<String> data = DatabaseCloud.consultTable();
 
-                for (int i = 0; i < dataBase.getCitas().size(); i++) {
-                    str[i] = (dataBase.getCitas().get(i).getNombre()+" "+
-                              dataBase.getCitas().get(i).getEspecialidad()+" "+
-                            dataBase.getCitas().get(i).getMedico()+" "+
-                            dataBase.getCitas().get(i).getFecha());
-                }
+                //for (int i = 0; i < dataBase.getCitas().size(); i++) {
+                //    str[i] = (dataBase.getCitas().get(i).getNombre()+" "+
+                //              dataBase.getCitas().get(i).getEspecialidad()+" "+
+                //            dataBase.getCitas().get(i).getMedico()+" "+
+                //            dataBase.getCitas().get(i).getFecha());
+                //}
 
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(Consult.this, android.R.layout.simple_list_item_1, str);
+                //ArrayAdapter<String> adapter = new ArrayAdapter<String>(Consult.this, android.R.layout.simple_list_item_1, str);
+                ArrayAdapter adapter = new ArrayAdapter<String>(Consult.this,
+                        com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+                        data);
                 listUsers.setAdapter(adapter);
             }
         });
